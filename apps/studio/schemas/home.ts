@@ -1,12 +1,10 @@
 // /sanity/schemas/home.ts (Sanity v3)
 import { defineType, defineField } from 'sanity';
-import { House } from 'lucide-react'; // optional icon
 
 export default defineType({
   name: 'home',
   title: 'Homepage',
   type: 'document',
-  icon: House as any,
   fields: [
     defineField({
       name: 'featuredProjects',

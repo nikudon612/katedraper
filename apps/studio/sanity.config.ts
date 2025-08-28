@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
+import { schemaTypes } from './schemas'
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
 const dataset = process.env.SANITY_STUDIO_DATASET!
@@ -16,5 +17,25 @@ export default defineConfig({
   title: 'Studio',
   projectId,
   dataset,
-  plugins: [deskTool()],
+  plugins: [
+    deskTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.documentTypeListItem('home')
+              .title('Homepage')
+              .child(
+                S.document()
+                  .schemaType('home')
+                  .documentId('home')
+              ),
+            S.documentTypeListItem('post'),
+            S.documentTypeListItem('project'),
+          ]),
+    }),
+  ],
+  schema: {
+    types: schemaTypes,
+  },
 })
