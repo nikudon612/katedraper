@@ -1,9 +1,12 @@
 <script lang="ts">
   import { useQuery } from "@sanity/svelte-loader";
   import type { PageData } from "./$types";
+  import home1 from '../lib/assets/home1.jpg';
+  import home2 from '../lib/assets/home2.png';
+  import home3 from '../lib/assets/home3.png';
 
   export let data: PageData;
-  const q = useQuery(data);
+  // const q = useQuery(data);
 
   // Prefer explicitly curated "featuredProjects", else fall back to posts
   $: ({ data: payload } = $q);
