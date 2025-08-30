@@ -1,40 +1,78 @@
 <script lang="ts">
-  import { useQuery } from "@sanity/svelte-loader";
-  import type { PageData } from "./$types";
-  import home1 from '../lib/assets/home1.jpg';
-  import home2 from '../lib/assets/home2.png';
-  import home3 from '../lib/assets/home3.png';
+  // This page receives only { home } from +page.server.ts
+  export let data: {
+    home: {
+      tagline?: string;
+      copyright?: string;
+      featured?: Array<{
+        id: string;
+        title?: string;
+        slug?: string | { current?: string } | null;
+        imageUrl?: string;
+        alt?: string;
+        mainImage?: { asset?: { url?: string } };
+        image?: { asset?: { url?: string }; alt?: string };
+        coverImage?: { asset?: { url?: string }; alt?: string };
+      }>;
+    };
+  };
 
-  export let data: PageData;
-  // const q = useQuery(data);
+  // Declare locals up front so they exist before logs
+  let rawProjects: any[] = [];
+  let projects: Array<{ title: string; slugOrId: string; image: string; alt: string }> = [];
 
-  // Prefer explicitly curated "featuredProjects", else fall back to posts
-  $: ({ data: payload } = $q);
-  $: rawProjects = payload?.home?.featuredProjects?.length
-    ? payload.home.featuredProjects
-    : (payload?.posts ?? []);
+  // DEBUG: see what the page actually got (server->client)
+  console.log('page data.home.featured:', data?.home?.featured);
 
+  // Assign immediately so the first paint has data (no race with $:)
+  rawProjects = data?.home?.featured ?? [];
+
+  // If you prefer reactivity, you can mirror with $:, but not required here:
+  // $: rawProjects = data?.home?.featured ?? [];
+
+  // utility: pick first available image field
   const pickImg = (p: any) =>
+    p?.imageUrl ??
     p?.coverImage?.asset?.url ??
     p?.mainImage?.asset?.url ??
     p?.image?.asset?.url ??
-    p?.imageUrl ?? "";
+    '';
 
-  $: projects = (rawProjects ?? [])
+  // Build the 3 tiles. Use id as a fallback when slug is missing.
+  const getSlugOrId = (p: any) =>
+    typeof p?.slug === 'string'
+      ? p.slug
+      : (p?.slug?.current ?? p?.slug ?? p?.id ?? '');
+
+  // compute once from rawProjects
+  projects = (rawProjects ?? [])
     .slice(0, 3)
-    .map((p: any) => ({
-      title: p?.title ?? "Untitled",
-      slug: p?.slug?.current ?? p?.slug ?? "#",
-      image: pickImg(p),
-      alt: p?.image?.alt ?? p?.coverImage?.alt ?? p?.mainImage?.alt ?? p?.title ?? "Project"
-    }))
-    .filter((p: any) => p.image && p.slug);
+    .map((p: any) => {
+      const title = p?.title ?? 'Untitled';
+      return {
+        title,
+        slugOrId: getSlugOrId(p),
+        image: pickImg(p),
+        alt: p?.alt ?? p?.image?.alt ?? p?.coverImage?.alt ?? p?.mainImage?.alt ?? title
+      };
+    })
+    // keep items that have an image AND either a slug or an id
+    .filter((p) => p.image && p.slugOrId);
 </script>
 
-<!-- Just the three-image strip; layout provides sidebar, tagline, and footer -->
+{#if !rawProjects.length}
+  <p class="text-yellow-700">No featured projects configured on the Homepage doc.</p>
+{:else if !projects.length}
+  <p class="text-yellow-700">
+    Featured projects are missing slugs; using ids as fallback links. Add a slug field to the
+    <code>project</code> schema and republish to get pretty URLs.
+  </p>
+{/if}
+
 <div class="grid gap-6 md:grid-cols-3 md:gap-8 lg:gap-12 items-start justify-between">
   {#each projects as p}
-    <a class="block group" href={`/projects/${p.slug}`} aria-label={p.title}>
+    <!-- if you already have a /projects/[slug-or-id] route, this works for both cases -->
+    <a class="block group" href={`/projects/${p.slugOrId}`} aria-label={p.title}>
       <div class="overflow-hidden">
         <img
           src={p.image}

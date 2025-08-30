@@ -2,12 +2,21 @@
 	import '../app.css';
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 	import { page } from '$app/stores';
-	import LiveMode from '../components/LiveMode.svelte';
+	// import LiveMode from '../components/LiveMode.svelte';
+	import { onMount } from 'svelte';
+	export let data: { projects: any[]; home: any };
 
-	// Track current path
+	onMount(() => {
+		console.log('layout projects:', data.projects);
+		console.log('layout home:', data.home);
+	});
+
+	$: currentProjects = data.projects;
+	$: home = data.home;
+
+	// ✅ keep your active/hover logic exactly the same
 	$: currentPath = $page.url.pathname;
 
-	// Treat "/" as exact match; others match on exact or subroutes (e.g. /projects/slug)
 	function isActive(href: string) {
 		if (href === '/') return currentPath === '/';
 		return currentPath === href || currentPath.startsWith(href + '/');
@@ -102,7 +111,7 @@
 
 		<!-- Page slot -->
 		<main class="relative">
-			<slot />
+			<slot {data} />
 
 			<div class="mt-8 flex justify-end md:mt-6">
 				<span class="text-xs tracking-[0.35em] uppercase text-[#a08f84]">
@@ -127,7 +136,8 @@
 
 <style>
 	:global(html, body, #svelte) {
-		background: #e8e2d7;
+		/* background: #e8e2d7; */
+		background: #ddd8cc;
 		height: 100%;
 	}
 	:global(body) {
