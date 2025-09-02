@@ -20,3 +20,12 @@
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
+
+<script>
+  (function () {
+    if (typeof window !== 'undefined' && !('$state' in window)) {
+      const fn = (v) => v; fn.raw = (v) => v; window.$state = fn;
+    }
+  })();
+</script>
+
