@@ -3,8 +3,7 @@
   "private": true,
   "packageManager": "pnpm@10.15.0",
   "workspaces": ["apps/*", "packages/*"],
-  "scripts": {
-    "dev": "pnpm -C apps/web dev & pnpm -C apps/studio dev",
+  "scripts": {    "dev": "pnpm -C apps/web dev & pnpm -C apps/studio dev",
     "dev:web": "pnpm -C apps/web dev",
     "dev:studio": "pnpm -C apps/studio dev",
     "build": "pnpm -C apps/web build",
