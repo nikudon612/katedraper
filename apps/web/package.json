@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
      "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "vite build",
     "preview": "svelte-kit preview",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
