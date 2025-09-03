@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import {defineType, defineField} from 'sanity'
 
 export default defineType({
   name: 'project',
@@ -9,13 +9,20 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mainImage',
       title: 'Main Image',
       type: 'image',
-      options: { hotspot: true },
+      options: {hotspot: true},
+    }),
+    defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Controls the order in which projects appear',
+      validation: (Rule) => Rule.min(0),
     }),
     defineField({
       name: 'excerpt',
@@ -38,7 +45,7 @@ export default defineType({
       return {
         title: selection.title,
         media: selection.media,
-      };
+      }
     },
   },
-});
+})
