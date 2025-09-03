@@ -1,13 +1,12 @@
 import adapter from '@sveltejs/adapter-vercel';
-import { vitePreprocess } from '@sveltejs/kit/vite'; // <- not from '@sveltejs/vite-plugin-svelte'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'; // ✅ correct import
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({
-      // sets the runtime for deployed functions
-      runtime: 'nodejs20.x'
+      runtime: 'nodejs20.x' // runtime for deployed functions
     })
   }
 };
