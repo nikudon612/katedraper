@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
 	import { formatDate } from '$lib/utils';
@@ -135,4 +135,4 @@
 			margin-top: var(--space-7);
 		}
 	}
-</style>
+</style> -->
