@@ -27,9 +27,6 @@
   // Assign immediately so the first paint has data (no race with $:)
   rawProjects = data?.home?.featured ?? [];
 
-  // If you prefer reactivity, you can mirror with $:, but not required here:
-  // $: rawProjects = data?.home?.featured ?? [];
-
   // utility: pick first available image field
   const pickImg = (p: any) =>
     p?.imageUrl ??
@@ -69,15 +66,18 @@
   </p>
 {/if}
 
-<div class="grid gap-6 md:grid-cols-3 md:gap-8 lg:gap-12 items-start justify-between">
+<!-- Mobile: single column with true full-width images.
+     Desktop: unchanged (3 columns, gaps, fixed heights). -->
+<div class="grid w-full gap-6 md:grid-cols-3 md:gap-8 lg:gap-12 items-start">
   {#each projects as p}
-    <!-- if you already have a /projects/[slug-or-id] route, this works for both cases -->
-    <a class="block group" href={`/projects/${p.slugOrId}`} aria-label={p.title}>
-      <div class="overflow-hidden">
+    <a class="block w-full group" href={`/projects/${p.slugOrId}`} aria-label={p.title}>
+      <div class="overflow-hidden w-full">
         <img
           src={p.image}
           alt={p.alt}
-          class="h-[420px] w-full object-cover md:h-[520px] lg:h-[560px] group-hover:opacity-95 transition"
+          class="block w-full h-auto object-cover
+                 md:h-[520px] lg:h-[560px]
+                 transition group-hover:opacity-95"
           loading="eager"
           decoding="async"
         />
