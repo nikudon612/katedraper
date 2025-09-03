@@ -28,10 +28,10 @@
 
 	// Active link logic (unchanged)
 	$: currentPath = $page.url.pathname;
-	function isActive(href: string) {
-		if (href === '/') return currentPath === '/';
-		return currentPath === href || currentPath.startsWith(href + '/');
-	}
+	// function isActive(href: string) {
+	// 	if (href === '/') return currentPath === '/';
+	// 	return currentPath === href || currentPath.startsWith(href + '/');
+	// }
 
 	/* --- Mobile menu state --- */
 	let mobileOpen = false;
@@ -72,6 +72,22 @@
 			lockScroll(false);
 		}
 	});
+
+	function norm(path: string) {
+		if (!path) return '/';
+		const p = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+		return p || '/';
+	}
+
+	function isActive(href: string) {
+		const path = norm($page.url.pathname);
+		const base = norm(href);
+		return path === base || path.startsWith(base + '/');
+	}
+
+	function activeClass(href: string) {
+		return isActive(href) ? 'text-brand' : 'text-muted';
+	}
 </script>
 
 <svelte:window on:keydown={onKeydown} />
@@ -84,7 +100,7 @@
 {/if}
 
 <!-- Full-bleed wrapper -->
-<div class="min-h-screen w-full bg-[#e8e2d7] text-[#7b170f] flex flex-col">
+<div class="h-dvh w-full bg-[#e8e2d7] text-[#7b170f] flex flex-col overflow-hidden">
 	<!-- 🔽 Mobile top bar (hidden on desktop) -->
 	<div class="md:hidden flex items-center justify-between px-4 py-4 relative z-[1010]">
 		<a href="/" class="inline-block">
@@ -127,9 +143,7 @@
 					<li class="uppercase">
 						<a
 							href="/"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/')}
-							class:text-[#a08f84]={!isActive('/')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/')}`}
 							aria-current={isActive('/') ? 'page' : undefined}>Home</a
 						>
 					</li>
@@ -137,9 +151,7 @@
 					<li class="uppercase">
 						<a
 							href="/projects"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/projects')}
-							class:text-[#a08f84]={!isActive('/projects')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/projects')}`}
 							aria-current={isActive('/projects') ? 'page' : undefined}>Projects</a
 						>
 					</li>
@@ -147,9 +159,7 @@
 					<li class="uppercase">
 						<a
 							href="/about"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/about')}
-							class:text-[#a08f84]={!isActive('/about')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/about')}`}
 							aria-current={isActive('/about') ? 'page' : undefined}>About</a
 						>
 					</li>
@@ -157,9 +167,7 @@
 					<li class="uppercase">
 						<a
 							href="/services"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/services')}
-							class:text-[#a08f84]={!isActive('/services')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/services')}`}
 							aria-current={isActive('/services') ? 'page' : undefined}>Services</a
 						>
 					</li>
@@ -167,9 +175,7 @@
 					<li class="uppercase">
 						<a
 							href="/testimonials"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/testimonials')}
-							class:text-[#a08f84]={!isActive('/testimonials')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/testimonials')}`}
 							aria-current={isActive('/testimonials') ? 'page' : undefined}>Testimonials</a
 						>
 					</li>
@@ -177,9 +183,7 @@
 					<li class="uppercase">
 						<a
 							href="/contact"
-							class="transition hover:text-[#7b170f]"
-							class:text-[#7b170f]={isActive('/contact')}
-							class:text-[#a08f84]={!isActive('/contact')}
+							class={`transition hover:text-[#7b170f] ${activeClass('/contact')}`}
 							aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a
 						>
 					</li>
