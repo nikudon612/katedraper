@@ -5,7 +5,7 @@ import groq from 'groq';
 // one project by slug (optional, for detail pages)
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0]{
-    _id, _createdAt, title, excerpt, mainImage, body
+    _id, _createdAt, title, excerpt, mainImage, body, order
   }
 `;
 
@@ -18,13 +18,14 @@ export const homeQuery = groq`
     "title": project->title,
     "slug": project->slug.current,
     "imageUrl": coalesce(overrideImage.asset->url, project->mainImage.asset->url),
-    "alt": coalesce(overrideAlt, project->title)
-  }
-}
-`;
+    "alt": coalesce(overrideAlt, project->title),
+ order
+  } | order(defined(order) desc, order asc)
+}`;
 
 export const projectsQuery = groq`
 *[_type == "project"] | order(_createdAt desc){
-  _id, _createdAt, title, excerpt, mainImage, "imageUrl": mainImage.asset->url
+  _id, _createdAt, title, excerpt, mainImage, "imageUrl": mainImage.asset->url, "slug": slug.current,
+  order
 }
 `;

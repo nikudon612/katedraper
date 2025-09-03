@@ -9,10 +9,7 @@
     "build": "pnpm -C apps/web build",
     "preview": "pnpm -C apps/web preview"
   },
-  "engines": {
-    "node": "22.x",
-    "pnpm": ">=10"
-  },
+    "engines": { "node": "22.x", "pnpm": ">=10" },
   "pnpm": {
     "overrides": {
       "@sveltejs/kit": "2.11.0",

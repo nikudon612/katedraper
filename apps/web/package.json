@@ -9,6 +9,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
+  
   "dependencies": {
     "@sanity/client": "^6.15.4",
     "@sanity/image-url": "^1.0.2",
