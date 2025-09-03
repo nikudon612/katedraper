@@ -1,8 +1,11 @@
 <script lang="ts">
 	export let data;
-	$: console.log('page data:', data);
-	const projects = [...data.projects].sort((a, b) => a.order - b.order);
-    $: console.log('sorted projects:', projects);
+	// already sorted by the server; keep this if you want a safety net
+	const projects = [...data.projects].sort((a, b) => {
+		if (a.order == null) return 1;
+		if (b.order == null) return -1;
+		return a.order - b.order;
+	});
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 md:gap-6">
