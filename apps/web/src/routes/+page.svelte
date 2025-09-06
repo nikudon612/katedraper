@@ -66,7 +66,7 @@
 
 <!-- Mobile: single column with true full-width images.
      Desktop: unchanged (3 columns, gaps, fixed heights). -->
-<div class="grid w-full gap-6 md:grid-cols-3 md:gap-8 lg:gap-12 items-start">
+<div class="grid w-full gap-1 md:grid-cols-3 md:gap-3 lg:gap-4 items-start">
 	{#each projects as p}
 		<a class="block w-full group" href={`/projects/${p.slugOrId}`} aria-label={p.title}>
 			<div class="overflow-hidden w-full">

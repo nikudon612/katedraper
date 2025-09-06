@@ -12,6 +12,9 @@ module.exports = {
 				muted: '#a08f84',
 				sand: '#e8e2d7',
 				paper: '#ddd8cc'
+			},
+			fontFamily: {
+				gotthard: ['Gotthard', 'sans-serif']
 			}
 		}
 	},

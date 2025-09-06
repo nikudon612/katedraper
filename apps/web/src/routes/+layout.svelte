@@ -104,7 +104,7 @@
 	<!-- 🔽 Mobile top bar (hidden on desktop) -->
 	<div class="md:hidden flex items-center justify-between px-4 py-4 relative z-[1010]">
 		<a href="/" class="inline-block">
-			<h1 class="leading-tight tracking-[0.18em] text-[18px] font-semibold uppercase">
+			<h1 class="leading-tight tracking-[0.18em] text-[18px] font-semibold font-gotthard uppercase">
 				Kate Draper<br />Design
 			</h1>
 		</a>
@@ -133,7 +133,7 @@
 		<!-- Left sidebar (desktop only — unchanged) -->
 		<aside class="md:sticky md:top-10 hidden md:block">
 			<a href="/" class="inline-block">
-				<h1 class="leading-tight tracking-[0.18em] text-[22px] md:text-2xl font-semibold uppercase">
+				<h1 class="font-gotthard leading-tight tracking-[0.18em] text-[22px] md:text-2xl font-semibold uppercase">
 					Kate Draper<br />Design
 				</h1>
 			</a>
