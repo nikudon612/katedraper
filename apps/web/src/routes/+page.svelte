@@ -69,13 +69,15 @@
 <div class="grid w-full gap-1 md:grid-cols-3 md:gap-3 lg:gap-4 items-start">
 	{#each projects as p}
 		<a class="block w-full group" href={`/projects/${p.slugOrId}`} aria-label={p.title}>
-			<div class="overflow-hidden w-full">
+			<!-- Aspect ratio wrapper, only on desktop -->
+			<div
+				class="overflow-hidden w-full
+				       md:aspect-[512/768] md:h-auto"
+			>
 				<img
 					src={p.image}
 					alt={p.alt}
-					class="block w-full h-auto object-cover
-                 md:h-[520px] lg:h-[560px]
-                 transition group-hover:opacity-95"
+					class="block w-full h-full object-cover transition group-hover:opacity-95"
 					loading="eager"
 					decoding="async"
 				/>

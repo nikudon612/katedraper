@@ -133,7 +133,9 @@
 		<!-- Left sidebar (desktop only — unchanged) -->
 		<aside class="md:sticky md:top-10 hidden md:block">
 			<a href="/" class="inline-block">
-				<h1 class="font-gotthard leading-tight tracking-[0.18em] text-[22px] md:text-2xl font-semibold uppercase">
+				<h1
+					class="font-gotthard leading-tight tracking-[0.18em] text-[22px] md:text-2xl font-semibold uppercase"
+				>
 					Kate Draper<br />Design
 				</h1>
 			</a>
@@ -196,7 +198,7 @@
 			<slot {data} />
 
 			<div class="mt-8 flex justify-end md:mt-6">
-				<span class="text-xs tracking-[0.35em] uppercase text-[#a08f84]">
+				<span class="font-gotthard text-xs tracking-[0.35em] uppercase text-[#ffffff]">
 					Diversity in Design
 				</span>
 			</div>
@@ -260,7 +262,7 @@
 							on:click|preventDefault={() => nav('/')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/') ? 'page' : undefined}>Home</a
 						>
 					</li>
@@ -271,7 +273,7 @@
 							on:click|preventDefault={() => nav('/projects')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/projects')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/projects') ? 'page' : undefined}>Projects</a
 						>
 					</li>
@@ -282,7 +284,7 @@
 							on:click|preventDefault={() => nav('/about')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/about')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/about') ? 'page' : undefined}>About</a
 						>
 					</li>
@@ -293,7 +295,7 @@
 							on:click|preventDefault={() => nav('/services')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/services')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/services') ? 'page' : undefined}>Services</a
 						>
 					</li>
@@ -304,7 +306,7 @@
 							on:click|preventDefault={() => nav('/testimonials')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/testimonials')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/testimonials') ? 'page' : undefined}>Testimonials</a
 						>
 					</li>
@@ -315,7 +317,7 @@
 							on:click|preventDefault={() => nav('/contact')}
 							class="inline-block py-2 transition hover:text-[#7b170f] {isActive('/contact')
 								? 'text-[#7b170f]'
-								: 'text-[#a08f84]'}"
+								: 'text-[#aa988a]'}"
 							aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a
 						>
 					</li>
