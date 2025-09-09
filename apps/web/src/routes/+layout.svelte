@@ -174,13 +174,13 @@
 						>
 					</li>
 
-					<li class="uppercase">
+					<!-- <li class="uppercase">
 						<a
 							href="/testimonials"
 							class={`transition hover:text-[#7b170f] ${activeClass('/testimonials')}`}
 							aria-current={isActive('/testimonials') ? 'page' : undefined}>Testimonials</a
 						>
-					</li>
+					</li> -->
 
 					<li class="uppercase">
 						<a
@@ -299,7 +299,7 @@
 							aria-current={isActive('/services') ? 'page' : undefined}>Services</a
 						>
 					</li>
-					<li>
+					<!-- <li>
 						<a
 							href="/testimonials"
 							sveltekit:prefetch
@@ -309,7 +309,7 @@
 								: 'text-[#aa988a]'}"
 							aria-current={isActive('/testimonials') ? 'page' : undefined}>Testimonials</a
 						>
-					</li>
+					</li> -->
 					<li>
 						<a
 							href="/contact"

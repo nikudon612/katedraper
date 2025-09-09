@@ -3,13 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-     "dev": "svelte-kit dev",
-    "build": "vite build",
-    "preview": "svelte-kit preview",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "dev": "vite dev",
+  "build": "vite build",
+  "preview": "vite preview",
+  "lint": "prettier --plugin-search-dir . --check . && eslint .",
+  "format": "prettier --plugin-search-dir . --write ."
   },
-  
   "dependencies": {
     "@sanity/client": "^6.15.4",
     "@sanity/image-url": "^1.0.2",
@@ -23,8 +22,8 @@
     "@sanity/types": "^3.52.4",
     "@sveltejs/adapter-auto": "^3.2.2",
     "@sveltejs/adapter-vercel": "^4.0.5",
-    "@sveltejs/kit": "2.11.0",
-    "@sveltejs/vite-plugin-svelte": "3.1.1",
+    "@sveltejs/kit": "2.37.1",
+    "@sveltejs/vite-plugin-svelte": "6.1.4",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.20",
@@ -34,7 +33,7 @@
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "prettier-plugin-svelte": "^3.2.6",
-    "svelte": "4.2.18",
+    "svelte": "5.38.7",
     "tailwindcss": "^3.4.10",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",

@@ -40,7 +40,7 @@
 					satisfying results.
 				</p>
 
-				<h3 class="tracking-wider uppercase text-[16px] leading-6 font-semibold !mt-12">
+				<h3 class="tracking-wider uppercase text-[16px] leading-6 font-semibold !mt-12 !mb-6">
 					Bio & Background
 				</h3>
 
